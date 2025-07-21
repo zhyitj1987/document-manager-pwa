@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- PWA配置 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- iOS PWA配置 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="文档管理">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%233B82F6' rx='32'/><path d='M96 40c-22.1 0-40 17.9-40 40v16h80V80c0-22.1-17.9-40-40-40z' fill='white'/><rect x='72' y='112' width='48' height='56' rx='8' fill='white'/><circle cx='96' cy='140' r='8' fill='%233B82F6'/></svg>">
+    
+    <!-- 其他Meta标签 -->
+    <meta name="description" content="拍照记录，智能分类，轻松管理您的重要文档">
+    <meta name="keywords" content="文档管理,拍照录入,文件分类,家庭文档">
+    
+    <title>智能文档管理</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* 隐藏Safari地址栏 */
+        @media screen and (max-device-width: 480px) {
+            html, body {
+                -webkit-text-size-adjust: none;
+            }
+        }
+        
+        /* iOS安全区域支持 */
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* 防止双击缩放 */
+        * {
+            touch-action: manipulation;
+        }
+        
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        
+        /* 加载动画 */
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 按钮点击效果 */
+        .btn-press:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
+        }
+        
+        /* 卡片悬浮效果 */
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 overscroll-none">
+    <!-- 加载界面 -->
+    <div id="loading" class="fixed inset-0 bg-blue-500 flex flex-col items-center justify-center z-50">
+        <div class="text-white text-center mb-8">
+            <div class="w-20 h-20 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                    <circle cx="12" cy="13" r="3"/>
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold mb-2">智能文档管理</h1>
+            <p class="text-blue-100">正在加载...</p>
+        </div>
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 应用主体 -->
+    <div id="app" style="display: none;"></div>
+
+    <!-- React和应用脚本 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 这里放入您的React组件代码
+        const { useState, useRef, useCallback, useEffect } = React;
+        const { Camera, Plus, Search, Eye, Trash2, Folder, FileText, Users, Receipt, Home, X, ChevronRight, Grid, List, Download } = lucide;
+
+        // DocumentManagerApp组件代码
+        // (这里应该包含完整的React组件代码，为了简洁省略)
+        
+        // 应用初始化
+        const initApp = () => {
+            // 隐藏加载界面
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            
+            // 渲染React应用
+            ReactDOM.render(React.createElement(DocumentManagerApp), document.getElementById('app'));
+        };
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', () => {
+            setTimeout(initApp, 1500); // 显示加载动画1.5秒
+        });
+
+        // PWA安装检测
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallPrompt();
+        });
+
+        const showInstallPrompt = () => {
+            // 显示安装提示（已集成在React组件中）
+            console.log('PWA安装提示可用');
+        };
+
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // 处理URL参数（快捷方式）
+        const urlParams = new URLSearchParams(window.location.search);
+        const action = urlParams.get('action');
+        
+        if (action === 'camera') {
+            // 启动相机
+            setTimeout(() => {
+                // 触发相机启动逻辑
+            }, 2000);
+        } else if (action === 'search') {
+            // 打开搜索
+            setTimeout(() => {
+                // 触发搜索页面
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "name": "智能文档管理",
+  "short_name": "文档管理",
+  "description": "拍照记录，智能分类，轻松管理您的重要文档",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#3B82F6",
+  "background_color": "#F9FAFB",
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%233B82F6' rx='32'/><path d='M96 40c-22.1 0-40 17.9-40 40v16h80V80c0-22.1-17.9-40-40-40z' fill='white'/><rect x='72' y='112' width='48' height='56' rx='8' fill='white'/><circle cx='96' cy='140' r='8' fill='%233B82F6'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%233B82F6' rx='96'/><path d='M256 112c-44.2 0-80 35.8-80 80v32h160v-32c0-44.2-35.8-80-80-80z' fill='white'/><rect x='176' y='272' width='160' height='128' rx='16' fill='white'/><circle cx='256' cy='336' r='24' fill='%233B82F6'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "拍照录入",
+      "short_name": "拍照",
+      "description": "快速拍照添加文档",
+      "url": "/?action=camera",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'><path d='M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z'/><circle cx='12' cy='13' r='3'/></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "搜索文档",
+      "short_name": "搜索",
+      "description": "快速搜索文档",
+      "url": "/?action=search",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'><circle cx='11' cy='11' r='8'/><path d='21 21l-4.35-4.35'/></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
